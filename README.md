@@ -2,12 +2,12 @@
 
 # Description
 
-a website that analyses your school's tweets
+a website that analyses your 🏫's tweets
 
-Uses Twitter's API to collect your school's most recent tweets
+🚀Uses Twitter's API to collect your school's most recent tweets
 and create a word cloud from it and execute sentiment analysis using ML
 
-# Example
+# 👨‍🎓 Example
 
 Made with the 'oundleschool' twitter account
 
