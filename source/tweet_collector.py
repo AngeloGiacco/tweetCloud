@@ -1,8 +1,14 @@
-import tweepy
-from credentials import *
+try:
+    import tweepy
+except ImportError:
+    print("ENSURE YOU HAVE INSTALLED tweepy")
+try:
+    from credentials import *
+except ImportError:
+    print("ENSURE YOU HAVE CREATED credentials.py IN THE SAME FOLDER")
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token_key, access_token_secret)
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
 
 def user_tweet(twitter_handle):
