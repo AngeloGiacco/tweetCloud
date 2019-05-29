@@ -4,20 +4,24 @@
 
 # tweetAnalysis
 
-# Description
+## Description
 
 a website that analyses your 🏫's tweets
 
 🚀Uses Twitter's API to collect your school's most recent tweets
 and create a word cloud from it and execute sentiment analysis using ML
 
-# 👨‍🎓 Example
+## 📌 Contributing Countries
+
+🇬🇧
+
+## 👨‍🎓 Example
 
 Made with the 'oundleschool' twitter account
 
 ![alt text](oundleschoolimage.png "word cloud from oundleschool")
 
-# Setup
+## Setup
 
 1: clone the repository
 2: navigate to the repository in the terminal
@@ -48,3 +52,17 @@ in line 58 of the tweet_collector.py file.
 ```
 python path/to/repo/source/tweet_collector.py
 ```
+
+## Todo
+- [x] 🐦 collect tweets
+- [ ] 💻️ create website
+- [ ] 📲 get input from website and download png
+
+
+## 📧 Contact
+### Email
+- Angelo Giacco | giacco.angelo.s@gmail.com
+
+## 🖊 Credits
+[@Macr0Nerd](https://github.com/Macr0Nerd) for showing me how to use Twitter's API
+like this project? check out his [Elon Bot](https://github.com/Macr0Nerd/elon-bot)!
