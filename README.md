@@ -1,4 +1,8 @@
-# schoolTweetsAnalysis
+[![first-timers-only](https://img.shields.io/badge/first--timers--only-friendly-blue.svg?style=flat-square)](https://www.firsttimersonly.com/)
+![Open Source Love](https://img.shields.io/badge/Open%20Source-%E2%9D%A4-blueviolet.svg)
+![Open Source Love](https://img.shields.io/badge/language-python-success.svg)
+
+# tweetAnalysis
 
 # Description
 
