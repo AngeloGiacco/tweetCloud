@@ -8,6 +8,8 @@ def my_form():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    text = request.form['text']
+    text = request.form['account']
     processed_text = text.upper()
     return processed_text
+
+my_form()
