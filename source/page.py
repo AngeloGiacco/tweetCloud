@@ -25,7 +25,6 @@ import urllib
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
-word_cloud_lst = []
 tweet_lst = []
 
 def user_tweet(twitter_handle):
@@ -44,8 +43,8 @@ def user_tweet(twitter_handle):
 def generate_wordcloud(words, mask,handle):
     word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
     path = 'static/'+handle+'.png'
+    print(path)
     word_cloud.to_file(path)
-    word_cloud_lst = []
 
 app = Flask(__name__)
 
@@ -55,13 +54,14 @@ def my_form():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    global tweet_lst
+    global word_cloud_lst
+    word_cloud_lst = []
     handle = request.form['account']
     user_tweet(handle)
     words = " ".join(word_cloud_lst)
     mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
     generate_wordcloud(words, mask,handle)
-    return render_template("body.html",img = handle+'.png')
+    return render_template("new.html",img = handle+'.png')
 
 if __name__ == '__main__':
     app.run(debug=True)
