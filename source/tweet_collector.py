@@ -15,10 +15,6 @@ try:
 except ImportError:
     print("ENSURE YOU HAVE INSTALLED requests")
 try:
-    import matplotlib.pyplot as plt
-except ImportError:
-    print("ENSURE YOU HAVE INSTALLED matplotlib")
-try:
     import numpy as np
 except ImportError:
     print("ENSURE YOU HAVE INSTALLED numpy")
@@ -46,16 +42,10 @@ def user_tweet(twitter_handle):
 
 def generate_wordcloud(words, mask):
     word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
-    plt.figure(figsize=(10,8),facecolor = 'white', edgecolor='blue')
-    plt.imshow(word_cloud)
-    plt.axis('off')
-    plt.tight_layout(pad=0)
-    plt.show()
     word_cloud.to_file(handle+'.png')
 
-
 if __name__ == '__main__':
-    handle = "RoryStewartUK"
+    handle = "oundleschool"
     user_tweet(handle)
     words = " ".join(word_cloud_lst)
     mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
