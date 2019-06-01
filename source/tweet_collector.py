@@ -41,7 +41,7 @@ def user_tweet(twitter_handle):
 
 def generate_wordcloud(words, mask):
     word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
-    path = 'static/'+handle+'.png'
+    path = 'templates/static/'+handle+'.png'
     word_cloud.to_file(path)
     word_cloud_lst = []
 
