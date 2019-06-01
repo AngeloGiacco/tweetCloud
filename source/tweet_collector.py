@@ -19,7 +19,6 @@ try:
 except ImportError:
     print("ENSURE YOU HAVE INSTALLED numpy")
 
-import re
 from PIL import Image
 import urllib
 
@@ -42,10 +41,12 @@ def user_tweet(twitter_handle):
 
 def generate_wordcloud(words, mask):
     word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
-    word_cloud.to_file(handle+'.png')
+    path = 'static/'+handle+'.png'
+    word_cloud.to_file(path)
+    word_cloud_lst = []
 
 if __name__ == '__main__':
-    handle = "oundleschool"
+    handle = "giaccoangelo"
     user_tweet(handle)
     words = " ".join(word_cloud_lst)
     mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
