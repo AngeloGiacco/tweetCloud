@@ -63,7 +63,7 @@ def generate_wordcloud(words, mask):
     word_cloud_lst = []
 
 if __name__ == '__main__':
-    handle = "giaccoangelo"
+    handle = "oundleschool"
     user_tweet(handle)
     words = " ".join(word_cloud_lst)
     mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
