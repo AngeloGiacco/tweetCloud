@@ -50,7 +50,7 @@ def user_tweet(twitter_handle,tweet_count):
                     clean.append(word)
             clean = []
     except tweepy.TweepError:
-        word_cloud_lst.append("invalid username")#a cool error message
+        return "invalid username"
 
 def generate_wordcloud(words, mask,handle):
     stopwords = set(STOPWORDS)
@@ -88,20 +88,18 @@ def my_form_post():
     word_cloud_lst = []
     handle = request.form['account']
     if handle == "" or handle == " ":
-        return "invalid input"
+        return "invalid account"
     else:
         tweet_count = request.form['tweet_count']
         try:
             tweet_count = int(tweet_count)
             if tweet_count <= 0:
-                return "number of tweets to be analysed must be bigger than zero"
+                return "must be bigger than 0"
             elif tweet_count > 200:
-                return "this script can not handle more than 200 tweets to be analysed"
+                return "can't be more than 200"
         except ValueError:
             return "invalid number entered"
         mask_link = request.form['template']
-        if mask_link == " " or mask_link == "":
-            mask_link = "http://"
         mask = getMask(mask_link)
         user_tweet(handle,tweet_count)
         words = " ".join(word_cloud_lst)
