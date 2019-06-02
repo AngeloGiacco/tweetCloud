@@ -1,1 +1,1 @@
-web: gunicorn deploy: source/page
+web:gunicorn source/page:app
