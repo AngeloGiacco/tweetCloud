@@ -22,6 +22,13 @@ except ImportError:
 from PIL import Image
 import urllib
 
+meaningless_words = [
+                    "il","la","az","ez","un","una",
+                    "uno","gli","le","the","with","RT",
+                    "amp","what","who","which","that",
+                    "che","chi","con","I","del","di","della",
+                    "ma","da"]
+
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
@@ -40,7 +47,10 @@ def user_tweet(twitter_handle):
         clean = []
 
 def generate_wordcloud(words, mask):
-    word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
+    stopwords = set(STOPWORDS)
+    for word in meaningless_words:
+        stopwords.add(word)
+    word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=stopwords, mask=mask).generate(words)
     path = 'static/images/'+handle+'.png'
     word_cloud.to_file(path)
     word_cloud_lst = []
