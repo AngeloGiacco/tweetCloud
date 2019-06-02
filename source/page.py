@@ -28,7 +28,7 @@ api = tweepy.API(auth)
 tweet_lst = []
 
 def user_tweet(twitter_handle):
-    tweets = api.user_timeline(screen_name=twitter_handle, count=10, tweet_mode="extended")
+    tweets = api.user_timeline(screen_name=twitter_handle, count=50, tweet_mode="extended")
     clean = []
     for tweet in tweets:
         for word in tweet.full_text.split():
@@ -57,12 +57,15 @@ def my_form_post():
     global word_cloud_lst
     word_cloud_lst = []
     handle = request.form['account']
-    user_tweet(handle)
-    words = " ".join(word_cloud_lst)
-    mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
-    generate_wordcloud(words, mask,handle)
-    filename = "{}.png".format(handle)
-    return render_template('body.html', filename=filename)
+    if handle == "" or handle == " ":
+        return "invalid input"
+    else:
+        user_tweet(handle)
+        words = " ".join(word_cloud_lst)
+        mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
+        generate_wordcloud(words, mask,handle)
+        filename = "{}.png".format(handle)
+        return render_template('body.html', filename=filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
