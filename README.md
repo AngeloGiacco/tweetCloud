@@ -19,7 +19,7 @@ and create a word cloud from it and execute sentiment analysis using ML
 
 Made with the 'oundleschool' twitter account
 
-![oundle school twitter account word cloud](source/static/oundleschool.png "word cloud from oundleschool")
+![oundle school twitter account word cloud](source/static/images/oundleschool.png "word cloud from oundleschool")
 
 ## Setup
 

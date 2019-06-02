@@ -42,9 +42,9 @@ def user_tweet(twitter_handle):
 
 def generate_wordcloud(words, mask,handle):
     word_cloud = WordCloud(width = 512, height = 512, background_color='white', stopwords=STOPWORDS, mask=mask).generate(words)
-    path = 'templates/static/'+handle+'.png'
-    print(path)
+    path = 'static/images/'+handle+'.png'
     word_cloud.to_file(path)
+    word_cloud_lst = []
 
 app = Flask(__name__)
 
@@ -64,7 +64,7 @@ def my_form_post():
         words = " ".join(word_cloud_lst)
         mask = np.array(Image.open(requests.get('http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png', stream=True).raw))
         generate_wordcloud(words, mask,handle)
-        filename = "{}.png".format(handle)
+        filename = "images/{}.png".format(handle)
         return render_template('body.html', filename=filename)
 
 if __name__ == '__main__':
