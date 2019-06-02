@@ -27,7 +27,8 @@ meaningless_words = [
                     "uno","gli","le","the","with","RT",
                     "amp","what","who","which","that",
                     "che","chi","con","I","del","di","della",
-                    "ma","da"]
+                    "ma","da","will"
+                    ]
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -35,19 +36,21 @@ api = tweepy.API(auth)
 tweet_lst = []
 
 def user_tweet(twitter_handle,tweet_count):
-    tweets = api.user_timeline(screen_name=twitter_handle, count=tweet_count, tweet_mode="extended")
-    clean = []
-    for tweet in tweets:
-        for word in tweet.full_text.split():
-            if 'https:' in word or 'http:' in word or 'www' in word or '.com' in word:
-                continue
-            elif word[0]== "@":
-                continue
-            else:
-                word_cloud_lst.append(word)
-                clean.append(word)
-        tweet_lst.append(" ".join(clean))
+    try:
+        tweets = api.user_timeline(screen_name=twitter_handle, count=200, tweet_mode="extended")
         clean = []
+        for tweet in tweets:
+            for word in tweet.full_text.split():
+                if 'https:' in word or 'http:' in word or 'www' in word or '.com' in word:
+                    continue
+                elif word[0] == "@":
+                    continue
+                else:
+                    word_cloud_lst.append(word)
+                    clean.append(word)
+            clean = []
+    except tweepy.TweepError:
+        word_cloud_lst.append("invalid username")#a cool error message
 
 def generate_wordcloud(words, mask,handle):
     stopwords = set(STOPWORDS)
@@ -62,7 +65,7 @@ def getMask(mask_link):
     default = "http://www.clker.com/cliparts/O/i/x/Y/q/P/yellow-house-hi.png"
     try:
         response = requests.get(mask_link,stream = True)
-    except requests.exceptions.InvalidURL:
+    except Exception:
         response = requests.get(default,stream = True)
         mask = np.array(Image.open(response.raw))
         return mask

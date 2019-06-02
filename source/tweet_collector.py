@@ -27,7 +27,8 @@ meaningless_words = [
                     "uno","gli","le","the","with","RT",
                     "amp","what","who","which","that",
                     "che","chi","con","I","del","di","della",
-                    "ma","da"]
+                    "ma","da","will"
+                    ]
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
@@ -35,16 +36,22 @@ api = tweepy.API(auth)
 word_cloud_lst = []
 
 def user_tweet(twitter_handle):
-    tweets = api.user_timeline(screen_name=twitter_handle, count=200, tweet_mode="extended")
-    clean = []
-    for tweet in tweets:
-        for word in tweet.full_text.split():
-            if 'https:' in word or 'http:' in word or 'www' in word or '.com' in word:
-                continue
-            else:
-                word_cloud_lst.append(word)
-                clean.append(word)
+    try:
+        tweets = api.user_timeline(screen_name=twitter_handle, count=200, tweet_mode="extended")
         clean = []
+        for tweet in tweets:
+            for word in tweet.full_text.split():
+                if 'https:' in word or 'http:' in word or 'www' in word or '.com' in word:
+                    continue
+                elif word[0] == "@":
+                    continue
+                else:
+                    word_cloud_lst.append(word)
+                    clean.append(word)
+            clean = []
+    except tweepy.TweepError:
+        word_cloud_lst.append("invalid username")#a cool error message
+
 
 def generate_wordcloud(words, mask):
     stopwords = set(STOPWORDS)
