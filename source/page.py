@@ -76,7 +76,7 @@ def getMask(mask_link):
         mask = np.array(Image.open(response.raw))
     return mask
 
-app = Flask(__name__)
+app = Flask(__name__, ...)
 
 @app.route('/')
 def my_form():
