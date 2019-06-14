@@ -58,8 +58,9 @@ python path/to/repo/source/tweet_collector.py
 
 ## Todo
 - [x] 🐦 collect tweets
-- [ ] 💻️ create website
-- [ ] 📲 get input from website and download png
+- [x] 💻️ create website
+- [x] 📲 get input from website
+- [ ] 📲 download output as png
 
 
 ## 📧 Contact
